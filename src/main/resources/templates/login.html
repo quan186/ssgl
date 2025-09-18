@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录 - 学生宿舍管理系统</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- 自定义样式 -->
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container">
+        <div class="row justify-content-center min-vh-100 align-items-center">
+            <div class="col-md-6 col-lg-4">
+                <div class="card shadow">
+                    <div class="card-body p-5">
+                        <div class="text-center mb-4">
+                            <i class="fas fa-home text-primary fs-1 mb-3"></i>
+                            <h3 class="fw-bold">登录系统</h3>
+                            <p class="text-muted">请输入您的账户信息</p>
+                        </div>
+                        
+                        <!-- 错误消息 -->
+                        <div th:if="${param.error}" class="alert alert-danger" role="alert">
+                            <i class="fas fa-exclamation-circle me-2"></i>
+                            用户名或密码错误，请重试
+                        </div>
+                        
+                        <div th:if="${param.logout}" class="alert alert-success" role="alert">
+                            <i class="fas fa-check-circle me-2"></i>
+                            您已成功退出登录
+                        </div>
+                        
+                        <!-- 登录表单 -->
+                        <form th:action="@{/login}" method="post">
+                            <div class="mb-3">
+                                <label for="username" class="form-label">
+                                    <i class="fas fa-user me-2"></i>用户名
+                                </label>
+                                <input type="text" class="form-control" id="username" name="username" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="password" class="form-label">
+                                    <i class="fas fa-lock me-2"></i>密码
+                                </label>
+                                <input type="password" class="form-control" id="password" name="password" required>
+                            </div>
+                            
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="remember-me" name="remember-me">
+                                <label class="form-check-label" for="remember-me">
+                                    记住我
+                                </label>
+                            </div>
+                            
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary btn-lg">
+                                    <i class="fas fa-sign-in-alt me-2"></i>登录
+                                </button>
+                            </div>
+                        </form>
+                        
+                        <hr class="my-4">
+                        
+                        <div class="text-center">
+                            <p class="text-muted mb-0">还没有账户？</p>
+                            <a th:href="@{/register}" class="text-decoration-none">
+                                <i class="fas fa-user-plus me-1"></i>立即注册
+                            </a>
+                        </div>
+                        
+                        <div class="text-center mt-3">
+                            <a th:href="@{/}" class="text-decoration-none">
+                                <i class="fas fa-arrow-left me-1"></i>返回首页
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 测试账户信息 -->
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <h6 class="card-title">
+                            <i class="fas fa-info-circle me-2"></i>测试账户
+                        </h6>
+                        <div class="row">
+                            <div class="col-6">
+                                <small class="text-muted">管理员</small><br>
+                                <small><strong>用户名:</strong> admin</small><br>
+                                <small><strong>密码:</strong> admin123</small>
+                            </div>
+                            <div class="col-6">
+                                <small class="text-muted">学生</small><br>
+                                <small><strong>用户名:</strong> student</small><br>
+                                <small><strong>密码:</strong> student123</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
